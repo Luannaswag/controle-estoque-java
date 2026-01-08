@@ -28,13 +28,17 @@ public class Main {
                 System.out.print("Quantidade inicial: ");
                 int quantidade = scanner.nextInt();
 
-                produtos.add(new Produto(nome, quantidade));
+                System.out.print("Preço unitário: ");
+                double preco = scanner.nextDouble();
+
+                produtos.add(new Produto(nome, quantidade, preco));
                 System.out.println("Produto cadastrado!");
             }
 
             if (opcao == 2) {
                 System.out.print("Produto: ");
                 String nome = scanner.nextLine();
+                boolean encontrado = false;
 
                 for (Produto p : produtos) {
                     if (p.nome.equalsIgnoreCase(nome)) {
@@ -42,13 +46,19 @@ public class Main {
                         int valor = scanner.nextInt();
                         p.entrada(valor);
                         System.out.println("Entrada registrada!");
+                        encontrado = true;
                     }
+                }
+
+                if (!encontrado) {
+                    System.out.println("Produto não encontrado.");
                 }
             }
 
             if (opcao == 3) {
                 System.out.print("Produto: ");
                 String nome = scanner.nextLine();
+                boolean encontrado = false;
 
                 for (Produto p : produtos) {
                     if (p.nome.equalsIgnoreCase(nome)) {
@@ -60,14 +70,34 @@ public class Main {
                         } else {
                             System.out.println("Estoque insuficiente!");
                         }
+                        encontrado = true;
                     }
+                }
+
+                if (!encontrado) {
+                    System.out.println("Produto não encontrado.");
                 }
             }
 
             if (opcao == 4) {
+                double totalGeral = 0;
+
                 for (Produto p : produtos) {
-                    System.out.println(p.nome + " - Quantidade: " + p.quantidade);
+                    System.out.println(
+                        p.nome +
+                        " | Qtde: " + p.quantidade +
+                        " | Preço: R$ " + p.preco +
+                        " | Total: R$ " + p.valorTotal()
+                    );
+
+                    totalGeral += p.valorTotal();
+
+                    if (p.quantidade <= 5) {
+                        System.out.println("⚠️ Estoque baixo!");
+                    }
                 }
+
+                System.out.println("\nValor total do estoque: R$ " + totalGeral);
             }
 
         } while (opcao != 0);
