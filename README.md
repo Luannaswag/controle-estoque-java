@@ -18,3 +18,9 @@ para fins educacionais.
 ## 🔹 Objetivo
 Projeto criado para prática de lógica de programação,
 controle de dados e regras de negócio.
+
+## 🔹 Melhorias
+- Cadastro de preço do produto
+- Cálculo do valor total em estoque
+- Alerta de estoque baixo
+- Validação de produto inexistente
